@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class DataReader {
+/**
+*最简陋版本		1055
+*阴性=0 阳性=1	1507
+*无=0			1517
+*/
 
     private static Map<String, Set<String>> tableMap = new HashMap<>();
 
