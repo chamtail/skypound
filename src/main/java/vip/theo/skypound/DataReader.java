@@ -1,15 +1,9 @@
 package vip.theo.skypound;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import com.alibaba.fastjson.JSON;
+
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.DoubleAdder;
 import java.util.concurrent.atomic.LongAdder;
@@ -70,7 +64,7 @@ public class DataReader {
         bufferedReader.close();
     }
 
-    private static String replaceResults(String results) {
+    static String replaceResults(String results) {
         results = results.replaceAll("０", "0");
         results = results.replaceAll("１", "1");
         results = results.replaceAll("２", "2");
@@ -226,7 +220,7 @@ public class DataReader {
     }
 
     public static void main(String[] args) throws IOException {
-        String fileName = "/Users/theo/Desktop/tianchidata/meinian_round1_data.txt";
+        String fileName = "C:\\Users\\chamtail\\Desktop\\skypound_data\\meinian_round1_data.txt";
         DataReader.readIntoTableMap(fileName);
         extractNumericTableIdSet();
         tableMap.clear();
@@ -239,7 +233,8 @@ public class DataReader {
         superSparseTableIdSet.clear();
         System.out.println(numericDenseTableIdSet.size());
         readIntoNumericDenseTableIdAvgMap(fileName);
-        readIntoPatientResultMap("/Users/theo/Desktop/tianchidata/meinian_round1_train_20180408.csv");
-        writeIntoOut(fileName, "/Users/theo/Desktop/tianchidata/tp_data_out");
+        System.out.println(JSON.toJSONString(numericDenseTableIdAvgMap));
+        readIntoPatientResultMap("C:\\Users\\chamtail\\Desktop\\skypound_data\\meinian_round1_train_20180408.csv");
+        writeIntoOut(fileName, "C:\\Users\\chamtail\\Desktop\\skypound_data\\tp_data_out");
     }
 }
